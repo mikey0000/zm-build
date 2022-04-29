@@ -766,8 +766,8 @@ sub GetBuildArch()
 {
    my $b_os = $CFG{BUILD_OS};
 
-   return "amd64"
-     if ( $b_os =~ /UBUNTU[0-9]+_64/ );
+   return "arm64"
+     if ( $b_os =~ /UBUNTU[0-9]+/ );
 
    return "x86_64"
      if ( $b_os =~ /RHEL[0-9]+_64/ || $b_os =~ /CENTOS[0-9]+_64/ );
@@ -780,7 +780,7 @@ sub GetPkgOsTag()
    my $b_os = $CFG{BUILD_OS};
 
    return "u$1"
-     if ( $b_os =~ /UBUNTU([0-9]+)_/ );
+     if ( $b_os =~ /UBUNTU([0-9]+)/ );
 
    return "r$1"
      if ( $b_os =~ /RHEL([0-9]+)_/ || $b_os =~ /CENTOS([0-9]+)_/ );
@@ -833,7 +833,7 @@ sub Clone($$)
       Die("Clone Attempts Failed")
         if ( !$s );
 
-      RemoveTargetInDir( $repo_name, $CFG{BUILD_DIR} );
+	#RemoveTargetInDir( $repo_name, $CFG{BUILD_DIR} );
    }
    else
    {
@@ -862,7 +862,7 @@ sub Clone($$)
                },
             );
 
-            RemoveTargetInDir( $repo_name, $CFG{BUILD_DIR} );
+	    #RemoveTargetInDir( $repo_name, $CFG{BUILD_DIR} );
          }
          else
          {
@@ -874,7 +874,7 @@ sub Clone($$)
 
                   if ( "@{$z->{out}}" !~ /Already up-to-date/ )
                   {
-                     RemoveTargetInDir( $repo_name, $CFG{BUILD_DIR} );
+			  #RemoveTargetInDir( $repo_name, $CFG{BUILD_DIR} );
                   }
                },
             );
